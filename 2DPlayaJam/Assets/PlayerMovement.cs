@@ -11,9 +11,7 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] int jumpForce;
     [SerializeField] int gravityScale;
-    [SerializeField] float rayLength;
     bool onGround;
-    public LayerMask groundLayer;
 
     void Start()
     {
@@ -43,21 +41,21 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
         {
-            bool onGround1 = Physics2D.Raycast(transform.position + (Vector3.right * 0.35f), Vector2.down, rayLength, groundLayer);
-            bool onGround2 = Physics2D.Raycast(transform.position + (Vector3.right * -0.35f), Vector2.down, rayLength, groundLayer);
-
-            if (onGround1 || onGround2)
+            if (onGround)
             {
                 rb2D.AddForce(transform.up * jumpForce * 100);
             }
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawLine(transform.position, transform.position + (Vector3.down * rayLength) + (Vector3.right * 0.35f));
-        Gizmos.DrawLine(transform.position, transform.position + (Vector3.down * rayLength) + (Vector3.right * -0.35f));
+        onGround = true;
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        onGround = false;
     }
 
 }
