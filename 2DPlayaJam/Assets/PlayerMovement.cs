@@ -6,8 +6,7 @@ public class PlayerMovement : MonoBehaviour
 {
     [HideInInspector] public Rigidbody2D rb2D;
     [SerializeField] int movementSpeed;
-    Vector3 xMov;
-    Vector3 yMov;
+    float xMov;
 
     [SerializeField] int jumpForce;
     [SerializeField] int gravityScale;
@@ -20,7 +19,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb2D.velocity = (xMov * movementSpeed * Time.fixedDeltaTime * 10) + yMov;
+        rb2D.velocity = new Vector2(xMov * movementSpeed * Time.fixedDeltaTime * 10, rb2D.velocity.y);
+
         Gravity();
     }
 
@@ -31,8 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        xMov = transform.right * Input.GetAxis("Horizontal");
-        yMov = transform.up * rb2D.velocity.y;
+        xMov = Input.GetAxis("Horizontal");
 
         Jump();
     }
@@ -43,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (onGround)
             {
-                rb2D.AddForce(transform.up * jumpForce * 100);
+                rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
             }
         }
     }
