@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ProtoPlaya.unity
-    guid: 8e350ada4a5722a45b23e8148ddd3391
+    path: Assets/Scenes/MainMenu.unity
+    guid: 2d3d501e4932f7a4da036b8ac96ee3ca
+  - enabled: 1
+    path: Assets/Scenes/Nivel01.unity
+    guid: 8d0ce71fe63ab0e449a3fd15d1a6c06c
+  - enabled: 1
+    path: Assets/Scenes/Nivel02.unity
+    guid: 6ef28fcb8969af846a3d9167cf48f688
   m_configObjects: {}

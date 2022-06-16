@@ -8,22 +8,20 @@ public class WinState : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1;
         GameObject[] plat = GameObject.FindGameObjectsWithTag("Platform");
         platformNumber = plat.Length;
     }
 
-    public void Win()
+    public void CkeckVictory()
     {
+        platformNumber--;
+
         if (platformNumber <= 0)
         {
             Time.timeScale = 0;
             Debug.Log("Ganaste");
         }
-    }
-
-    public void Rest()
-    {
-        platformNumber--;
     }
 
 }

@@ -26,7 +26,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Gravity()
     {
-        rb2D.AddForce(transform.up * gravityScale);
+        rb2D.AddForce(-transform.up * gravityScale);
     }
 
     void Update()

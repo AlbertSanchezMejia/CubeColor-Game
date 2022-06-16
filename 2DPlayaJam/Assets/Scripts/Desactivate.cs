@@ -8,9 +8,8 @@ public class Desactivate : MonoBehaviour
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        win.Rest();
+        FindObjectOfType<WinState>().CkeckVictory();
         gameObject.SetActive(false);
-        win.Win();
     }
 
 }
