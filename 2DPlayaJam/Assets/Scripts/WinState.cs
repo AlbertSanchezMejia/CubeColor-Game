@@ -23,7 +23,7 @@ public class WinState : MonoBehaviour
 
         if (platformNumber <= 0)
         {
-            Time.timeScale = 0;
+            //Time.timeScale = 0;
             Debug.Log("Ganaste");
             return;
         }
