@@ -10,7 +10,9 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] int jumpForce;
     [SerializeField] int gravityScale;
-    bool onGround;
+    [SerializeField] Transform groundCheck;
+    [SerializeField] LayerMask layerGround;
+
 
     void Start()
     {
@@ -20,7 +22,6 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         rb2D.velocity = new Vector2(xMov * movementSpeed * Time.fixedDeltaTime * 10, rb2D.velocity.y);
-
         Gravity();
     }
 
@@ -32,29 +33,25 @@ public class PlayerMovement : MonoBehaviour
     void Update()
     {
         xMov = Input.GetAxis("Horizontal");
-
         Jump();
     }
 
+    bool OnGround()
+    {
+        return Physics2D.OverlapCircle(groundCheck.position, 0.25f, layerGround);
+    }
     void Jump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
+        if (Input.GetButtonDown("Jump")) //Teclas Space, W o Flecha arriba.
         {
-            if (onGround)
+            if (OnGround())
             {
                 rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
             }
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        onGround = true;
-    }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        onGround = false;
-    }
+
 
 }
