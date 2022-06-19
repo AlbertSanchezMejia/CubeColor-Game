@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] int movementSpeed;
     float xMov;
 
-    [SerializeField] int jumpForce;
+    [SerializeField] float jumpForce;
     [SerializeField] int gravityScale;
     [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask layerGround;
