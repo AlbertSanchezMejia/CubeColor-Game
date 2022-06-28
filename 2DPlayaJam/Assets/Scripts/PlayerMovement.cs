@@ -10,12 +10,12 @@ public class PlayerMovement : MonoBehaviour
 
     [SerializeField] float jumpForce;
     [SerializeField] int gravityScale;
-    [SerializeField] Transform groundCheck;
     [SerializeField] LayerMask layerGround;
-
+    Transform groundCheck;
 
     void Start()
     {
+        groundCheck = transform.GetChild(0);
         rb2D = GetComponent<Rigidbody2D>();
     }
 
@@ -50,8 +50,5 @@ public class PlayerMovement : MonoBehaviour
             }
         }
     }
-
-
-
 
 }

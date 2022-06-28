@@ -2403,8 +2403,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb2D: {fileID: 0}
-  movementSpeed: 35
-  jumpForce: 12
+  movementSpeed: 30
+  jumpForce: 11.5
   gravityScale: 30
   groundCheck: {fileID: 321729480}
   layerGround:
