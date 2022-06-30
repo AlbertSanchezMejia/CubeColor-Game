@@ -11,8 +11,7 @@ public class PlatformChangeColor : MonoBehaviour
     {
         winState = FindObjectOfType<WinState>();
     }
-
-    void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (hasChanged == false)
         {
@@ -20,7 +19,6 @@ public class PlatformChangeColor : MonoBehaviour
             hasChanged = true;
             winState.CkeckVictory();
         }
-
     }
 
 }

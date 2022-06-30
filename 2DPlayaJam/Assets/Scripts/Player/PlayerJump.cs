@@ -2,14 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerJump : MonoBehaviour
 {
-    [HideInInspector] public Rigidbody2D rb2D;
-    [SerializeField] int movementSpeed;
-    float xMov;
-
-    [SerializeField] float jumpForce;
-    [SerializeField] int gravityScale;
+    Rigidbody2D rb2D;
+    [SerializeField] float jumpForce = 11f;
+    [SerializeField] float gravityValue = 2.5f;
     [SerializeField] LayerMask layerGround;
     Transform groundCheck;
 
@@ -17,28 +14,17 @@ public class PlayerMovement : MonoBehaviour
     {
         groundCheck = transform.GetChild(0);
         rb2D = GetComponent<Rigidbody2D>();
-    }
-
-    void FixedUpdate()
-    {
-        rb2D.velocity = new Vector2(xMov * movementSpeed * Time.fixedDeltaTime * 10, rb2D.velocity.y);
-        Gravity();
-    }
-
-    void Gravity()
-    {
-        rb2D.AddForce(-transform.up * gravityScale);
+        rb2D.gravityScale = gravityValue;
     }
 
     void Update()
     {
-        xMov = Input.GetAxis("Horizontal");
         Jump();
     }
 
     bool OnGround()
     {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.25f, layerGround);
+        return Physics2D.OverlapCircle(groundCheck.position, 0.34f, layerGround);
     }
     void Jump()
     {
@@ -48,6 +34,10 @@ public class PlayerMovement : MonoBehaviour
             {
                 rb2D.velocity = new Vector2(rb2D.velocity.x, jumpForce);
             }
+        }
+        if (Input.GetButtonUp("Jump") && rb2D.velocity.y > 0) //Teclas Space, W o Flecha arriba.
+        {
+            rb2D.velocity = new Vector2(rb2D.velocity.x, rb2D.velocity.y * 0.5f);
         }
     }
 
